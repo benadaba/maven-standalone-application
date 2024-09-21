@@ -38,7 +38,4 @@ jobs:
 
     # SonarQube analysis with remote server authentication
     - name: SonarQube Scan
-      run: mvn sonar:sonar \
-          -Dsonar.host.url=http://3.8.211.24 \
-          -Dsonar.login=admin \
-          -Dsonar.password=admin
+      run: mvn sonar:sonar -Dsonar.host.url=http://3.8.211.24 -Dsonar.login=${{ secrets.SONAR_USERNAME }} -Dsonar.password=${{ secrets.SONAR_PASSWORD }}
