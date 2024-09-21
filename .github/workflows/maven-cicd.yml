@@ -39,9 +39,12 @@ jobs:
     # Check if JAR file exists
     - name: Verify JAR file exists
       run: |
-        if [[ ! -f target/*.jar ]]; then
-          echo "Error: JAR file not found!"
+        JAR_PATH="target/maven-standalone-application-0.0.1-SNAPSHOT.jar"
+        if [ ! -f "$JAR_PATH" ]; then
+          echo "Error: JAR file not found in target directory!"
           exit 1
+        else
+          echo "JAR file found at $JAR_PATH"
         fi
 
 
