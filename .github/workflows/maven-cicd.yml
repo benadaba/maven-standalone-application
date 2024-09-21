@@ -36,6 +36,15 @@ jobs:
     - name: Build and test with Maven
       run: mvn clean install
 
+    # Check if JAR file exists
+    - name: Verify JAR file exists
+      run: |
+        if [[ ! -f target/*.jar ]]; then
+          echo "Error: JAR file not found!"
+          exit 1
+        fi
+
+
     # SonarQube analysis with remote server authentication
     - name: SonarQube Scan
       run: mvn sonar:sonar -Dsonar.host.url=http://3.8.211.24:9000 -Dsonar.login=${{ secrets.SONAR_USERNAME }} -Dsonar.password=${{ secrets.SONAR_PASSWORD }}
