@@ -59,3 +59,10 @@ jobs:
       env:
         MAVEN_USERNAME: ${{ secrets.NEXUS_USERNAME }}
         MAVEN_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+
+    - name: Deploy to Tomcat
+      run: |
+        curl -T target/maven-standalone-application-1.0.jar "http://${{ secrets.TOMCAT_HOSTNAME }}/manager/text/deploy?path=/maven-app&update=true"
+      env:
+        TOMCAT_USERNAME: ${{ secrets.TOMCAT_USERNAME }}
+        TOMCAT_PASSWORD: ${{ secrets.TOMCAT_PASSWORD }}
